@@ -7,12 +7,16 @@ const mongoose = require("mongoose");
 const app = express();
 
 //code to connect Mongodb
+const port = 5000;
+app.listen(port, () => {
+    console.log(`Express Server Started At Port : ${port}`);
+});
 
-const storage = multer.memoryStorage({
+/* const storage = multer.memoryStorage({
     destination: function(req, file, callback) {
         callback(null, "");
     },
-});
+}); */
 
 mongoose.connect("mongodb://localhost:27017/Flutter", (err) => {
     if (!err) {
@@ -22,11 +26,6 @@ mongoose.connect("mongodb://localhost:27017/Flutter", (err) => {
     }
 });
 mongoose.Promise = global.Promise;
-
-const port = 5000;
-app.listen(port, () => {
-    console.log(`Express Server Started At Port : ${port}`);
-});
 
 app.use(bodyParser.json());
 //Route For Users sends to UserController

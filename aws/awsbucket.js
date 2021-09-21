@@ -1,11 +1,16 @@
 const AWS = require("aws-sdk");
 
-AWS.config.update({ region: "ap-south-1" });
+//AWS.config.update({ region: "ap-south-1" });
 
-s3 = new AWS.S3({ apiVersion: "v1" });
+s3 = new AWS.S3({
+    apiVersion: "v1",
+    accesskeyID: process.env.S3_ACCESS_KEY,
+    secretaccesskey: S3_SECRETACCESS_KEY,
+    region: S3__BUCKET_REGION,
+});
 
 s3.listObjects({
-        Bucket: "clover-carte",
+        Bucket: "",
     },
     function(err, data) {
         if (err) {
@@ -17,7 +22,7 @@ s3.listObjects({
 );
 
 s3.getBucketAcl({
-        Bucket: "clover-carte",
+        Bucket: "",
     },
     function(err, data) {
         if (err) {
